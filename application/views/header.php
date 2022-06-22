@@ -427,6 +427,9 @@
                         <a class="nav-link <?php echo $beranda ?>" aria-current="page"
                             href="<?php echo base_url() ?>beranda">Beranda</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo $resep ?>" href="<?php echo base_url() ?>resep">Resep</a>
+                    </li>
                 </ul>
                 <form class="d-flex search" action="<?php base_url() ?>cari">
                     <input name='key' class="form-control me-2" type="search" placeholder="Cari resep"
