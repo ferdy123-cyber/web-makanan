@@ -30,7 +30,7 @@
             <?php } ?>
         </div>
         <div class="ingredient row">
-            <p style="font-size: 24px; color:#0f5b86; font-weight:700; opacity: 0.8; text-align: left">Bahan</p>
+            <p style="font-size: 24px; font-weight:700; opacity: 0.8; text-align: left">Bahan</p>
             <?php foreach ($detailRecipe['results']['ingredient'] as $data) { ?>
             <div class="col-md-6 list-ingredient">
                 <div class="d-flex">
@@ -45,7 +45,7 @@
             <?php foreach ($detailRecipe['results']['step'] as $data) { ?>
             <div class="col-md-12 list-ingredient">
                 <div class="d-flex">
-                    <i class="bi bi-circle-fill" style="font-size: 16px; font-weight: 500; color:#0f5b86;"></i>
+                    <i class="bi bi-circle-fill" style="font-size: 16px; font-weight: 500;"></i>
                     <p
                         style="font-size: 18px; margin-left:15px; color: #262729; width: calc(100% - 34px);word-wrap: break-word;">
                         <?php echo $data ?></p>

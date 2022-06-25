@@ -18,8 +18,16 @@
         font-family: "Poppins", sans-serif;
     }
 
+    :root {
+        --bg-main-color: #649eff;
+    }
+
+    img {
+        border-radius: 5px;
+    }
+
     .navbar {
-        background-color: #0b4769;
+        background-color: var(--bg-main-color);
         min-height: 70px;
         font-size: 18px;
         font-weight: 300;
@@ -84,6 +92,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        border-radius: 0px;
     }
 
     .text-category {
@@ -145,7 +154,8 @@
 
     .detail i {
         margin-right: 2px;
-        color: #0f5b86;
+        /* color: #0f5b86; */
+        color: var(--bg-main-color);
     }
 
     .detail span {
@@ -316,6 +326,10 @@
         width: 100%;
     }
 
+    .ingredient p {
+        color: var(--bg-main-color);
+    }
+
     .list-ingredient {
         text-align: left;
     }
@@ -328,14 +342,70 @@
         width: 100%;
     }
 
+    .step i {
+        color: var(--bg-main-color);
+    }
+
     .pagination a {
-        color: #0f5b86;
+        color: var(--bg-main-color);
     }
 
     .contentSearch {
         width: 100%;
         max-width: 1140px;
         margin: auto;
+    }
+
+    .contentSearch span {
+        color: var(--bg-main-color);
+    }
+
+
+    .floating-button {
+        background-color: var(--bg-main-color);
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 9999;
+    }
+
+    .floating-button-list {
+        width: 40px;
+        height: 40px;
+        margin-top: 5px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .floating-button i {
+        justify-self: center;
+        align-self: center;
+        color: white;
+    }
+
+    .floating-color {
+        position: relative;
+    }
+
+    @keyframes example {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .floating-button-list {
+        animation: example 1s ease;
     }
 
     @media (max-width: 1015px) {
@@ -398,15 +468,50 @@
     }
 
     ::-webkit-scrollbar-thumb {
-        background: #262729;
+        background: var(--bg-main-color);
         border-radius: 10px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-        background: #4e5474;
+        background: var(--bg-main-color);
+        opacity: 0.6;
     }
     </style>
 </head>
+
+<!-- javascript -->
+<script>
+localStorage.setItem('listTheme', JSON.stringify(['#649eff', 'lightblue', '#e10000', '#808080', '#e36b89', 'salmon',
+    '#ffa701'
+]))
+if (!localStorage.getItem('currentTheme')) {
+    localStorage.setItem('currentTheme', '#649eff')
+}
+var r = document.querySelector(':root');
+r.style.setProperty('--bg-main-color', localStorage.getItem('currentTheme'));
+const changeTheme = (data) => {
+    localStorage.setItem('currentTheme', data)
+    location.reload()
+}
+
+const hideListTheme = () => {
+    document.getElementById('floating-list').innerHTML = null;
+    document.getElementById('floating-button').innerHTML =
+        `<div onclick="showListTheme()" class="floating-button shadow"><i class="bi bi-magic"></i></div>`;
+}
+
+const showListTheme = () => {
+    const list = JSON.parse(localStorage.getItem('listTheme'))
+    const data = list.filter((e) => e !== localStorage.getItem('currentTheme'))
+    const showlist = data.map((e) => {
+        return `<div onclick='changeTheme("${e}")' class='floating-button-list' style="background-color: ${e};"></div>`;
+    })
+    document.getElementById('floating-list').innerHTML = showlist.join('');
+    document.getElementById('floating-button').innerHTML =
+        `<div onclick="hideListTheme()" class="floating-button shadow"><i class="bi bi-magic"></i></div>`;
+}
+</script>
+<!-- javascript -->
 
 <body>
     <nav class="navbar navbar-expand-md navbar-dark shadow" style="margin-bottom: 20px;">
@@ -438,4 +543,9 @@
                 </form>
             </div>
         </div>
+        <div id="floating-list" class="floating-color" style="position: fixed; right: 30px; bottom: 80px;"></div>
+        <div id="floating-button">
+            <div onclick="showListTheme()" class="floating-button shadow"><i class="bi bi-magic"></i></div>
+        </div>
+
     </nav>

@@ -1,6 +1,5 @@
 <div class="contentSearch" style="padding-top: 95px;">
-    <p style="font-size: 38px;font-weight:600; margin-left:10px">Hasil untuk <span
-            style='color: #1a7db6;'><?php echo $key ?></span>
+    <p style="font-size: 38px;font-weight:600; margin-left:10px">Hasil untuk <span><?php echo $key ?></span>
     </p>
     <div class="left-content row">
         <?php foreach ($result['results'] as $data) { ?>
